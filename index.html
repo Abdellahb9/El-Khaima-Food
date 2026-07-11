@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>El Khaima Food | Authentic Taste, Fast Service</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#3c4d00",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "inverse-primary": "#506600",
+                    "on-surface": "#e2e2e2",
+                    "surface-bright": "#38393a",
+                    "inverse-on-surface": "#2f3131",
+                    "outline": "#8e9379",
+                    "tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb596",
+                    "on-secondary-container": "#541d00",
+                    "primary-container": "#c3f400",
+                    "surface-container": "#1e2020",
+                    "on-secondary-fixed": "#360f00",
+                    "on-error-container": "#ffdad6",
+                    "inverse-surface": "#e2e2e2",
+                    "primary-fixed": "#c3f400",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#282a2b",
+                    "surface-tint": "#abd600",
+                    "secondary-fixed": "#ffdbcd",
+                    "on-tertiary-container": "#656464",
+                    "on-surface-variant": "#c4c9ac",
+                    "on-primary": "#283500",
+                    "surface-container-highest": "#333535",
+                    "on-primary-fixed": "#161e00",
+                    "surface-container-low": "#1a1c1c",
+                    "surface": "#121414",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#474646",
+                    "tertiary-fixed": "#e5e2e1",
+                    "tertiary-container": "#e5e2e1",
+                    "on-secondary": "#581e00",
+                    "secondary-container": "#fe6500",
+                    "on-primary-container": "#556d00",
+                    "on-error": "#690005",
+                    "on-background": "#e2e2e2",
+                    "outline-variant": "#444933",
+                    "primary": "#ffffff",
+                    "tertiary-fixed-dim": "#c9c6c5",
+                    "surface-variant": "#333535",
+                    "secondary": "#ffb596",
+                    "primary-fixed-dim": "#abd600",
+                    "on-secondary-fixed-variant": "#7c2e00",
+                    "surface-container-lowest": "#0c0f0f",
+                    "surface-dim": "#121414",
+                    "background": "#121414",
+                    "on-tertiary": "#313030"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "bento-gap": "16px",
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-xl": ["Space Grotesk"],
+                    "display-lg": ["Space Grotesk"],
+                    "headline-lg": ["Space Grotesk"],
+                    "label-md": ["Space Grotesk"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Space Grotesk"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0D0D0D;
+            color: #e2e2e2;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-heavy {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .electric-glow {
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.3);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-white/10 shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-display-lg text-display-lg font-bold text-primary dark:text-primary tracking-tighter">
+                El Khaima
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#menu">Menu</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#why-us">Why Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#reviews">Reviews</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#location">Location</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-md text-label-md font-bold hover:opacity-80 transition-opacity active:scale-95 duration-150">
+                Order Now
+            </button>
+</div>
+</nav>
+<main class="mt-24 space-y-24 pb-24">
+<!-- Bento Grid Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop reveal">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap">
+<!-- Main 3D Canvas -->
+<div class="md:col-span-8 h-[500px] md:h-[600px] relative rounded-lg overflow-hidden glass-card group">
+<!-- STITCH_THREEJS_START:ANIMATION_2 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_2" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_2');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+camera.position.z = 5;
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(5, 5, 5);
+scene.add(directionalLight);
+
+const accentLight = new THREE.PointLight(0xccff00, 2, 10);
+accentLight.position.set(-2, 2, 2);
+scene.add(accentLight);
+
+// Burger Model Construction
+const burgerGroup = new THREE.Group();
+
+// Materials
+const bunMaterial = new THREE.MeshStandardMaterial({ color: 0xD08B47, roughness: 0.8 });
+const meatMaterial = new THREE.MeshStandardMaterial({ color: 0x5C3B24, roughness: 0.9 });
+const cheeseMaterial = new THREE.MeshStandardMaterial({ color: 0xFFD700 });
+const lettuceMaterial = new THREE.MeshStandardMaterial({ color: 0x32CD32 });
+
+// Bottom Bun
+const bottomBunGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.4, 32);
+const bottomBun = new THREE.Mesh(bottomBunGeo, bunMaterial);
+bottomBun.position.y = -0.8;
+burgerGroup.add(bottomBun);
+
+// Meat Patty
+const meatGeo = new THREE.CylinderGeometry(1.15, 1.15, 0.3, 32);
+const meat = new THREE.Mesh(meatGeo, meatMaterial);
+meat.position.y = -0.45;
+burgerGroup.add(meat);
+
+// Cheese
+const cheeseGeo = new THREE.BoxGeometry(2.1, 0.05, 2.1);
+const cheese = new THREE.Mesh(cheeseGeo, cheeseMaterial);
+cheese.position.y = -0.28;
+cheese.rotation.y = Math.PI / 4;
+burgerGroup.add(cheese);
+
+// Lettuce
+const lettuceGeo = new THREE.CylinderGeometry(1.25, 1.25, 0.1, 32);
+const lettuce = new THREE.Mesh(lettuceGeo, lettuceMaterial);
+lettuce.position.y = -0.2;
+burgerGroup.add(lettuce);
+
+// Top Bun
+const topBunGeo = new THREE.SphereGeometry(1.2, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
+const topBun = new THREE.Mesh(topBunGeo, bunMaterial);
+topBun.position.y = -0.1;
+topBun.scale.y = 0.7;
+burgerGroup.add(topBun);
+
+scene.add(burgerGroup);
+
+// Mouse interaction
+let mouseX = 0;
+let mouseY = 0;
+let targetRotationX = 0;
+let targetRotationY = 0;
+
+window.addEventListener('mousemove', (event) => {
+    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+});
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    // Auto rotation
+    burgerGroup.rotation.y += 0.005;
+
+    // Smooth mouse parallax
+    targetRotationY = mouseX * 0.5;
+    targetRotationX = mouseY * 0.3;
+
+    burgerGroup.rotation.y += (targetRotationY - burgerGroup.rotation.y) * 0.05;
+    burgerGroup.rotation.x += (targetRotationX - burgerGroup.rotation.x) * 0.05;
+
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_2 -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-12 pointer-events-none">
+<h1 class="font-display-xl text-display-xl text-primary mb-4">El Khaima Food</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">Authentic Taste, Fast Service. Experience the Electric Oasis of Laâyoune's finest fast food fusion.</p>
+</div>
+</div>
+<!-- Right Side Stack -->
+<div class="md:col-span-4 flex flex-col gap-bento-gap">
+<!-- Stats Card -->
+<div class="glass-card p-8 rounded-lg flex flex-col justify-center items-center text-center h-1/3">
+<div class="text-primary-container font-display-lg text-display-lg">4.7★</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-2">15+ Satisfied Reviews</div>
+</div>
+<!-- CTA Block -->
+<div class="bg-secondary-container p-8 rounded-lg flex flex-col justify-between h-1/3 group cursor-pointer transition-all hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-4xl text-on-secondary-container">delivery_dining</span>
+<span class="material-symbols-outlined text-2xl text-on-secondary-container group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-secondary-container mb-4">Order Now</h3>
+<button class="w-full bg-[#CCFF00] text-black font-display-lg text-label-md py-4 rounded-full uppercase tracking-tighter font-bold electric-glow">Get Delivery</button>
+</div>
+</div>
+<!-- Featured Dish -->
+<div class="relative glass-card rounded-lg h-1/3 overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A macro photography shot of a gourmet Royal Burger with multiple layers of flame-grilled beef, melting cheddar cheese, crispy lettuce, and a glossy brioche bun. The lighting is dramatic and cinematic, emphasizing the texture of the meat and the vibrancy of the vegetables against a dark, tech-focused background with subtle electric lime highlights. High-end food editorial style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBckGXx1FOXmH_W7oo1DlWuRtgQs1nPA8XyngmLT7EaiNxra9P62J7UNIuehcTmLhXWzor1jfCXamgOSHx7ntteOUZIlsSpaH9r-sgUcPwO2LTb_SSiVo4qNMc_9O8O_2NRse3rIM2rp74sgjkrcOoS7npsTw58t8uIxdAtH9ANNZlWKlM1pk4N25XpCUif5daUDYO4N2PThzgri_66-gkr8dqP0Slfd6kC9EOFkTWm3ibLcbVsIVkxtgo7LiabBS8jtB641BKdG2jn')"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute top-4 left-4 bg-[#CCFF00] text-black px-3 py-1 rounded-full text-xs font-bold uppercase">Best Seller</div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<h4 class="font-headline-lg text-headline-lg text-white">Royal Burger</h4>
+<span class="text-primary-container font-bold text-xl">$8.99</span>
+</div>
+<button class="bg-white/20 backdrop-blur-md p-2 rounded-full border border-white/20 text-white">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Menu Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop reveal" id="menu">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary mb-2">Our Menu</h2>
+<p class="text-on-surface-variant font-body-lg">Curated selections from traditional tastes to modern cravings.</p>
+</div>
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<button class="px-8 py-3 rounded-full bg-primary-container text-on-primary-container font-bold whitespace-nowrap">All</button>
+<button class="px-8 py-3 rounded-full glass-card text-on-surface hover:bg-white/10 whitespace-nowrap transition-colors">Sandwiches</button>
+<button class="px-8 py-3 rounded-full glass-card text-on-surface hover:bg-white/10 whitespace-nowrap transition-colors">Sides</button>
+<button class="px-8 py-3 rounded-full glass-card text-on-surface hover:bg-white/10 whitespace-nowrap transition-colors">Drinks</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-bento-gap">
+<!-- Menu Card 1 -->
+<div class="glass-card rounded-lg overflow-hidden group flex flex-col">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A high-contrast photo of a spicy chicken wrap featuring crispy breaded chicken, fresh greens, and a drizzle of electric orange spicy sauce. The background is dark and moody, shot in a top-down editorial food photography style with subtle glowing edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIANhN19kDeztaOje7T2kPKTbpJAKvNXU2nV1upOz3KhuoOu_x-xIbwdr0OT7ZG0XiW5bdMbz0R4CKljkh_0WNl0znYZ1VsG1JhY4RwUpHYlpX4oKVRig5mb-22UGowqMULfMs1FMuPkJ8uGaSsP1kMxDmq8CRnZwvFpE67jIZqGz6kLtjUxkX_6W1iKu8VmwcwjMts_gfjV2Xm4J_2Tm5vCnmeoyvWxasHXAbiZh1EeUhryWLU-7Yuwa5fsFve4lO9VtUlO8B8zdi"/>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-primary-container font-bold">$6.50</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Spicy Sahara Wrap</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Crispy chicken with our signature Sahara spice blend and local garden vegetables.</p>
+</div>
+<button class="w-full py-4 border border-white/10 rounded-full font-bold flex items-center justify-center gap-2 group-hover:bg-primary-container group-hover:text-black transition-all">
+<span class="material-symbols-outlined">shopping_bag</span>
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Repeat Menu Cards (Simplified for variety) -->
+<div class="glass-card rounded-lg overflow-hidden group flex flex-col">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A premium grilled lamb sandwich on a traditional crusty bread, garnished with fresh herbs and a garlic yogurt sauce. Vivid orange accents from the sauce contrast with the deep brown of the meat. High-energy food lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKfJctVsWlpLL2ZkumFInD0bbFfxnOxbNxo53S3no6aBe0HShiGH62fSIs_eEPWhGc6RzmLcBcxCX3B4yuPGHvcoGV6rdXQqHne6J5n1-CJD0DuhNNnSm4jUNgBccKTEYMd0BasmadVG00pqdsYANJK-GjTso1PusTj9JIwbDYfFlkYHpQh388Ur7_gYdx5yVG-XbYwmilqt7Dfj-hRILYaZUNYP-BS1xgkUjXHe3n4UabwgjdP1TNfjge620K4gvByABwn8ymw5ou"/>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-primary-container font-bold">$9.00</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Traditional Lamb Grill</h3>
+<p class="text-on-surface-variant text-sm mb-6">Slow-cooked tender lamb chunks marinated in traditional spices.</p>
+</div>
+<button class="w-full py-4 border border-white/10 rounded-full font-bold flex items-center justify-center gap-2 group-hover:bg-primary-container group-hover:text-black transition-all">
+<span class="material-symbols-outlined">shopping_bag</span>
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<div class="glass-card rounded-lg overflow-hidden group flex flex-col">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Golden crispy thick-cut fries served in a modern black ceramic bowl, seasoned with vibrant electric lime zest and herbs. The background features blurred neon restaurant lights for a tech-forward dining vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJs04lrGJnjj-gkybX3mEI5dlDoYnqzWQDicg-SWsjMkR-1hPWGEv3KuKVAyBGK4ybCzOmyHxwekbScLJCseSRV-oQ5n69Ta_dwtb07Nvlpi4tl40ofca1VWtiR0brgE6aI2gXNlPI9gFzEvUX3HxsJ-KRpq9SPwYuSC6MlG7WcC4WbfSWYCrioA7vGRcKsprmBtDmNo1LB4aaEwzAp4eDm9dgYbTm_5hnxufEMQ8vTr523ri_tqUiuHwPDZC21FWZFHXMv2dmQvmD"/>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-primary-container font-bold">$3.50</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Khaima Fries</h3>
+<p class="text-on-surface-variant text-sm mb-6">Signature spiced potatoes served with our house secret dipping sauce.</p>
+</div>
+<button class="w-full py-4 border border-white/10 rounded-full font-bold flex items-center justify-center gap-2 group-hover:bg-primary-container group-hover:text-black transition-all">
+<span class="material-symbols-outlined">shopping_bag</span>
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Three more items to make 6 -->
+<div class="glass-card rounded-lg overflow-hidden group flex flex-col lg:hidden xl:flex">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A refreshing avocado and date milkshake served in a tall glass with frosted texture. The green of the avocado pops against the dark background. Minimalist and premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOY-JAoVAR3qXdZV2prxm9gJGGWzaVBCgqG7s7aURlVdSnXae4p14IqEF6UOiVQkBWqGf85MP3GD1jueLhxudmh25kGdyHYaaZ_LxTbv-p05VaJr_6kjW80aZV5TCQyOepYGg9xQawTKeAEgEuw6UvHbQSWijzg_ActK8rWnW56bzAsl6tOubcVj_TuNjMCaSI2Zghbp20A-xXPg8BrHB3GBpv8IKTLOwDcXQlkneB3zX_7RQF6QEi36WgrQovBqDSFr-Q-cYLRuBk"/>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-primary-container font-bold">$4.00</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div><h3 class="font-headline-lg text-headline-lg mb-2">Oasis Shake</h3><p class="text-on-surface-variant text-sm mb-6">A cooling blend of local dates, honey, and fresh avocado.</p></div>
+<button class="w-full py-4 border border-white/10 rounded-full font-bold flex items-center justify-center gap-2 group-hover:bg-primary-container group-hover:text-black transition-all">Add to Cart</button>
+</div>
+</div>
+<div class="glass-card rounded-lg overflow-hidden group flex flex-col">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Double beef patty burger with melted cheese and caramelized onions. High-contrast studio lighting highlighting the steam and juiciness. Dark background with vibrant orange glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHSS1w7qOHAH05kmeG9bnwz64GE8w1ItIdcxyl3Q6-6P-oP1mvLuz9TLHEDvmOn64rTcpWr9VYsR_JzAsIlwGhOOLunTr5KwDkTHHkkW5tojrHorscowAqXoSgH8imFlmaJ0NMW6rNq1ibux4Qe6T5qpetVX5ed-roHOBVXix4yDthoEenKAGrDzijCp3FYgYr3ych39edf5jUgcPv2HKtUGR1v4c8yVYVJfcqYG7HWIpH-BBxclaYvLzPUsaFl_e9UHDSlNaMInlD"/>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-primary-container font-bold">$7.99</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div><h3 class="font-headline-lg text-headline-lg mb-2">Monster Beef</h3><p class="text-on-surface-variant text-sm mb-6">Two 150g patties, melted cheddar, and our signature sauce.</p></div>
+<button class="w-full py-4 border border-white/10 rounded-full font-bold flex items-center justify-center gap-2 group-hover:bg-primary-container group-hover:text-black transition-all">Add to Cart</button>
+</div>
+</div>
+<div class="glass-card rounded-lg overflow-hidden group flex flex-col">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A platter of mini sliders including chicken, beef, and falafel, beautifully arranged on a dark slate. Colorful garnishes and sauces provide high-energy visual interest. Modern editorial look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtik3sSKbEy8LPFlWrzeBtF3bY1NfYNdmmn8S2_07xWogwrJjR7jq4Ita2--X8O2cdGpbB1r4B0pjtV6W__Lwgphbaz4gka6TDqm8kbZSBd7TqWB-x064Beq9qLtnMeJ2IXu4ETCKQ2LV0YzNsNeuZe6bNC2DrryiPETMzm38KaOY6Jux3BFnlA7jlWgIFWwrVC1gOBYPcnJP_wYP-yPk1j_fyTEbL1UF4tCvw-7T_1ckeUmbTnA75OHZME60gPvHVyWAGwxYess-P"/>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-primary-container font-bold">$12.50</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div><h3 class="font-headline-lg text-headline-lg mb-2">Slider Trio</h3><p class="text-on-surface-variant text-sm mb-6">Perfect for sharing: three different flavor profiles in one tray.</p></div>
+<button class="w-full py-4 border border-white/10 rounded-full font-bold flex items-center justify-center gap-2 group-hover:bg-primary-container group-hover:text-black transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Us Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop reveal" id="why-us">
+<h2 class="font-display-lg text-display-lg text-primary text-center mb-16">Why People Choose Us</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-bento-gap">
+<div class="glass-card p-10 rounded-lg text-center hover:bg-white/5 transition-colors group">
+<div class="w-20 h-20 bg-secondary-container/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-4xl">bolt</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Fast Service</h3>
+<p class="text-on-surface-variant">Your food ready in under 15 minutes, guaranteed freshness.</p>
+<div class="mt-6 text-primary-container font-display-lg text-display-lg counter" data-target="15">0</div>
+<div class="text-xs uppercase text-on-surface-variant tracking-widest">Minutes average</div>
+</div>
+<div class="glass-card p-10 rounded-lg text-center hover:bg-white/5 transition-colors group">
+<div class="w-20 h-20 bg-primary-container/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-container text-4xl">restaurant</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Great Taste</h3>
+<p class="text-on-surface-variant">A fusion of traditional Sahrawi recipes and global favorites.</p>
+<div class="mt-6 text-primary-container font-display-lg text-display-lg counter" data-target="100">0</div>
+<div class="text-xs uppercase text-on-surface-variant tracking-widest">% Satisfaction</div>
+</div>
+<div class="glass-card p-10 rounded-lg text-center hover:bg-white/5 transition-colors group">
+<div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-4xl">inventory_2</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Variety</h3>
+<p class="text-on-surface-variant">From hearty burgers to light traditional snacks and shakes.</p>
+<div class="mt-6 text-primary-container font-display-lg text-display-lg counter" data-target="50">0</div>
+<div class="text-xs uppercase text-on-surface-variant tracking-widest">Menu Items</div>
+</div>
+<div class="glass-card p-10 rounded-lg text-center hover:bg-white/5 transition-colors group">
+<div class="w-20 h-20 bg-secondary-container/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-4xl">moped</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Delivery</h3>
+<p class="text-on-surface-variant">Tracking every mile to bring hot food to your doorstep.</p>
+<div class="mt-6 text-primary-container font-display-lg text-display-lg counter" data-target="3000">0</div>
+<div class="text-xs uppercase text-on-surface-variant tracking-widest">Monthly Orders</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop reveal" id="reviews">
+<h2 class="font-display-lg text-display-lg text-primary mb-12">What Our Fans Say</h2>
+<div class="flex overflow-x-auto snap-x snap-mandatory gap-bento-gap no-scrollbar pb-8">
+<!-- Review Card 1 -->
+<div class="snap-start shrink-0 w-[300px] md:w-[400px] glass-card p-8 rounded-lg">
+<div class="flex text-primary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface-variant mb-6 italic">"The Royal Burger is out of this world. Best fast food joint in Laâyoune by far. The vibe is just right!"</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center font-bold">AH</div>
+<div>
+<div class="font-bold text-primary">Ahmed H.</div>
+<div class="text-xs text-on-surface-variant">Google Local Guide</div>
+</div>
+</div>
+</div>
+<!-- Review Card 2 -->
+<div class="snap-start shrink-0 w-[300px] md:w-[400px] glass-card p-8 rounded-lg">
+<div class="flex text-primary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface-variant mb-6 italic">"Fastest delivery I've had. The packaging was eco-friendly and the food was still steaming hot."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center font-bold">SM</div>
+<div>
+<div class="font-bold text-primary">Sara M.</div>
+<div class="text-xs text-on-surface-variant">Laâyoune Resident</div>
+</div>
+</div>
+</div>
+<!-- Review Card 3 -->
+<div class="snap-start shrink-0 w-[300px] md:w-[400px] glass-card p-8 rounded-lg">
+<div class="flex text-primary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+<p class="font-body-lg text-on-surface-variant mb-6 italic">"The Oasis shake is exactly what you need on a hot day. The dates give it such a unique sweetness."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center font-bold">KB</div>
+<div>
+<div class="font-bold text-primary">Khalid B.</div>
+<div class="text-xs text-on-surface-variant">Food Critic</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery -->
+<section class="reveal">
+<div class="grid grid-cols-2 md:grid-cols-4 h-[600px]">
+<div class="overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A moody photo of a chef preparing a grill with flames licking the meat. The lighting is cinematic with high contrast, showing the orange glow of the fire against the dark kitchen environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpjGmHAU0foe7xfi_KWrb-qJeT7aeOXyywOJlEfeMG3bwSnkNyR3tPZexQEH33ZG473xA_Y6E1kkWohHZQBrME5pRG7NiEjOm4BqGyKunQfRVwzEK3BwijyDD5eEhZpqL5Jg-rsOPBb9FeMoDdTgXT1-jKdYBSsp1qi0cgYfFY1rWHbGRArI-zt2BjzvFAikN5ksaCb-1IjqyZgMFPfgpGOxzI8oEjSqJSPIQditQnq4vfRsFoxBzcExcrLEibzp-9KXTinTPrpJZm')"></div>
+</div>
+<div class="overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A dynamic shot of dipping a golden french fry into a bowl of rich, electric-orange spicy dipping sauce. Splashes and textures are captured in high speed." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2KncTrliqK3Pb6IKzpsVOwHorEaSMqFQUc3XcXlRVIB1fNYoqHmXT4VOuCcWB1T2DDyKbZUmmk39j1u-qBRtygInWEp1sENK9qG1ax48J577xnzX3tMxORl8Tj6c46K4mW4Q5-0NjffOfCSYKFWBFxSftVunCmiXpoT27bZ5jzNhMTR8aVeUAa4S7dukjVyZ7uc5q2BmlS0tLnj7v7xFpDFqXEfVS0lYk4NA87lsjZs34I6RTWtj8EaDh3OiMvGvZcOEWeqhKtHI6')"></div>
+</div>
+<div class="overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="The modern interior of El Khaima Food featuring neon electric lime accents, glass dividers, and minimalist dark furniture. Tech-forward oasis atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwsbhVeo0JCi7bmyo_FX34NYZaz96j8XoIpCs_MwzMBGqQ8s077zch8dNWVOnmJK3KyPlputNMK2DderbZRRzQa-Yy6yM9-prz-IBqjjTP2SjjG8hot3bdNyfwna31DOQaSUetmBkUw1BH71wZ3QSWClbm8S6tbh0Zrvx50czuwdcKKmT2nNauzvxyh5l-XoCgye_6pJBWtSaKlCUoxzr9VxqWDFSrAa-6gSrk4rdFpEBY-6VOwj3rJzFyGi9n8_YoXSgNYgqI8ZEW')"></div>
+</div>
+<div class="overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A close up of hands sharing a large platter of diverse appetizers and sliders in a social setting. High energy, warm but techy lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCNg_2NLzXod3B7kwoN1Cmmbfrt-HZmdRC6cZE3S59wCB-6MklVQkMecQoVrLlHftugx6u3gi3q38XFbxIZNNxU-BRTBwKPomETwIRXJs7ln1aVnU5ZSNA6lNlkgiTMSpMzsdR6CdeMwgnYlSq13UclmwaXugy1hrC6JwMV5r6DbjDRRkb20q1k5nRp6m-s39__0QEmPUiP6NhvzhJ0b8rqt7Oh8zdmxoLaMZgVlEKootzdL8zlPN8hVMnfkv8ELulevbxFKpc7RlXH')"></div>
+</div>
+</div>
+</section>
+<!-- Location & Contact -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop reveal" id="location">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="h-[400px] md:h-[600px] rounded-lg overflow-hidden glass-card relative">
+<div class="absolute inset-0 bg-surface-container-high flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary-container mb-4">map</span>
+<div class="font-bold text-xl">Find Us in Laâyoune</div>
+<p class="text-on-surface-variant mt-2">73 Boulevard Mezouar</p>
+</div>
+<!-- Mock Map Overlay -->
+<div class="absolute inset-0 opacity-40 mix-blend-overlay bg-cover bg-center" data-location="Laâyoune" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-r2kLuWZiXqEx4GiDYr3IK8_EweWi_r8V0OJmH1qCyWtPZ1X9BmZDwYmLbohp0fDj39iQjEeaAcRyafvJj0a9v6PiDBJoBawzCnGwFUAhpTrd9njXVig2azOyyoVhHbH_8qpdTr7NQ_hbsKDtSk57gXZsAVbZBMbEQnkJhRQ-7EjcpA0l2-fYCMXcW8L4T9YeCl-aJdfDTiu7L6quEWkA1pQhGKwqBxSX-HFVP-uclN2WlrKmNv3MljE1IlD4_VErHGktHnkAJNXH')"></div>
+</div>
+<div class="glass-card p-10 rounded-lg">
+<h2 class="font-display-lg text-display-lg text-primary mb-8">Get In Touch</h2>
+<form class="space-y-6">
+<div>
+<label class="block text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-2">Your Name</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg p-4 focus:outline-none focus:border-primary-container transition-colors text-on-surface" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-2">Email Address</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg p-4 focus:outline-none focus:border-primary-container transition-colors text-on-surface" placeholder="john@example.com" type="email"/>
+</div>
+<div>
+<label class="block text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-2">Your Message</label>
+<textarea class="w-full bg-white/5 border border-white/10 rounded-lg p-4 h-32 focus:outline-none focus:border-primary-container transition-colors text-on-surface" placeholder="How can we help you?"></textarea>
+</div>
+<button class="w-full py-5 bg-[#CCFF00] text-black font-bold uppercase tracking-tighter rounded-full transition-transform hover:scale-[1.02] active:scale-95">Send Message</button>
+</form>
+<div class="mt-12 pt-12 border-t border-white/10 flex flex-col md:flex-row gap-8 justify-between">
+<div>
+<div class="font-bold text-primary">Visit Us</div>
+<div class="text-on-surface-variant">73 Boulevard Mezouar,<br/>Laâyoune 70000</div>
+</div>
+<div>
+<div class="font-bold text-primary">Call Us</div>
+<div class="text-on-surface-variant">+212 5XX-XXXXXX</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-bento-gap px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-display-lg text-display-lg text-primary mb-4">El Khaima</div>
+<p class="text-on-tertiary-container font-body-md text-body-md">Redefining fast food in Laâyoune through high-impact flavors and modern hospitality.</p>
+</div>
+<div class="col-span-1">
+<h4 class="font-bold text-primary mb-6">Quick Links</h4>
+<ul class="space-y-4">
+<li><a class="text-on-tertiary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Menu</a></li>
+<li><a class="text-on-tertiary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Order Tracking</a></li>
+<li><a class="text-on-tertiary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Store Locations</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="font-bold text-primary mb-6">Support</h4>
+<ul class="space-y-4">
+<li><a class="text-on-tertiary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-tertiary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Terms of Service</a></li>
+<li><a class="text-on-tertiary-container hover:text-primary transition-colors font-body-md text-body-md" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="font-bold text-primary mb-6">Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-white/5 border border-white/10 rounded-full px-4 py-2 flex-grow text-sm focus:outline-none focus:border-primary-container" placeholder="Email" type="text"/>
+<button class="bg-primary-container text-black p-2 rounded-full">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="flex gap-4 mt-6">
+<a class="text-on-tertiary-container hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-on-tertiary-container hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-6 text-center text-xs text-on-tertiary-container border-t border-white/5 uppercase tracking-widest">
+            © 2024 El Khaima Food. All rights reserved.
+        </div>
+</footer>
+<script>
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealHandler = () => {
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 150;
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealHandler);
+        window.addEventListener('load', revealHandler);
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const counterOptions = { threshold: 0.5 };
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    const count = +entry.target.innerText;
+                    const speed = target / 50;
+
+                    const updateCount = () => {
+                        const current = +entry.target.innerText;
+                        if (current < target) {
+                            entry.target.innerText = Math.ceil(current + speed);
+                            setTimeout(updateCount, 20);
+                        } else {
+                            entry.target.innerText = target;
+                        }
+                    };
+                    updateCount();
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, counterOptions);
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body></html>
