@@ -9,11 +9,19 @@
         crossfadeSeconds: 0.8,
 
         blendMode: 'screen',        // 'screen' | 'lighten' — makes the black background disappear
-        mask: { inner: '42%', outer: '74%' },
-        glow: { color: 'rgba(255, 163, 72, 0.22)', size: '55%', blur: 40 },
 
-        desktopWidth: '60%',        // width of the video area on ≥768px (right-aligned)
-        focus: { x: 0.5, y: 0.55 }, // burger centre in video-frame coords (drives crop, mask, glow, particles)
+        // All "frame" coordinates are fractions of the video frame (0–1).
+        focus: { x: 0.497, y: 0.6 },    // burger centre in the frame
+        // Elliptical fade, in frame coords; must reach transparent before the clip's hard bottom/side edges.
+        mask: { center: { x: 0.497, y: 0.51 }, radiusX: 0.28, radiusY: 0.43, solid: 0.82 },
+        glow: { color: 'rgba(255, 163, 72, 0.22)', size: '40%', blur: 40 },
+
+        // How big the frame is drawn (width as a multiple of the hero media box) and where
+        // in that box the burger centre lands (fractions of the box).
+        layout: {
+            desktop: { width: 1.05, anchor: { x: 0.68, y: 0.34 } },
+            mobile: { width: 1.6, anchor: { x: 0.5, y: 0.55 } },
+        },
 
         mobileQuery: '(max-width: 767px)',
         sources: {
@@ -26,10 +34,10 @@
         },
 
         particles: {
-            origin: { x: 0.5, y: 0.32 }, // where steam/sparks start, in video-frame coords (top of the bun)
-            spread: 0.09,                // horizontal spawn width, as a fraction of the rendered frame height
-            steam: { count: 14, opacity: 0.11, riseSpeed: 0.11, life: [3, 4.5] },
-            sparks: { count: 22, color: [255, 179, 71], size: [0.004, 0.009], riseSpeed: [0.12, 0.26], life: [1.8, 3.4] },
+            origin: { x: 0.497, y: 0.27 }, // where steam/sparks start, in frame coords (top of the bun)
+            spread: 0.12,                  // horizontal spawn width, as a fraction of the rendered frame height
+            steam: { count: 12, opacity: 0.08, riseSpeed: 0.11, life: [3, 4.5] },
+            sparks: { count: 12, color: [255, 179, 71], size: [0.003, 0.007], riseSpeed: [0.12, 0.26], life: [1.8, 3.4] },
         },
     };
     // ─────────────────────────────────────────────────────────────────────────
@@ -55,15 +63,38 @@
         standby: null,
     };
 
+    const pct = (v) => `${v * 100}%`;
     media.style.setProperty('--hero-blend', CONFIG.blendMode);
-    media.style.setProperty('--mask-inner', CONFIG.mask.inner);
-    media.style.setProperty('--mask-outer', CONFIG.mask.outer);
-    media.style.setProperty('--focus-x', `${CONFIG.focus.x * 100}%`);
-    media.style.setProperty('--focus-y', `${CONFIG.focus.y * 100}%`);
-    media.style.setProperty('--hero-desktop-width', CONFIG.desktopWidth);
+    media.style.setProperty('--mask-x', pct(CONFIG.mask.center.x));
+    media.style.setProperty('--mask-y', pct(CONFIG.mask.center.y));
+    media.style.setProperty('--mask-rx', pct(CONFIG.mask.radiusX));
+    media.style.setProperty('--mask-ry', pct(CONFIG.mask.radiusY));
+    media.style.setProperty('--mask-inner', pct(CONFIG.mask.solid));
     media.style.setProperty('--glow-color', CONFIG.glow.color);
     media.style.setProperty('--glow-size', CONFIG.glow.size);
     media.style.setProperty('--glow-blur', `${CONFIG.glow.blur}px`);
+
+    // Rendered frame rect inside #hero-media, shared with the particle overlay.
+    const frameRect = { ox: 0, oy: 0, rw: 0, rh: 0 };
+    let frameAspect = 16 / 9;
+
+    function layout() {
+        const L = mobileMq.matches ? CONFIG.layout.mobile : CONFIG.layout.desktop;
+        const W = media.clientWidth;
+        const H = media.clientHeight;
+        const el = state.active;
+        if (el.videoWidth && el.videoHeight) frameAspect = el.videoWidth / el.videoHeight;
+        const rw = W * L.width;
+        const rh = rw / frameAspect;
+        Object.assign(frameRect, { ox: L.anchor.x * W - CONFIG.focus.x * rw, oy: L.anchor.y * H - CONFIG.focus.y * rh, rw, rh });
+        for (const v of media.querySelectorAll('video')) {
+            Object.assign(v.style, { left: `${frameRect.ox}px`, top: `${frameRect.oy}px`, width: `${rw}px`, height: `${rh}px` });
+        }
+        media.style.setProperty('--glow-x', pct(L.anchor.x));
+        media.style.setProperty('--glow-y', pct(L.anchor.y));
+    }
+    new ResizeObserver(layout).observe(media);
+    mobileMq.addEventListener('change', layout);
 
     function currentSet() {
         return mobileMq.matches && CONFIG.sources.mobile ? CONFIG.sources.mobile : CONFIG.sources.desktop;
@@ -91,7 +122,12 @@
         state.posterOnly = true;
         const { poster } = currentSet();
         const probe = new Image();
-        probe.onload = () => { video.poster = poster; video.style.opacity = '1'; };
+        probe.onload = () => {
+            frameAspect = probe.naturalWidth / probe.naturalHeight;
+            layout();
+            video.poster = poster;
+            video.style.opacity = '1';
+        };
         probe.onerror = showFallback;
         probe.src = poster;
     }
@@ -108,6 +144,7 @@
         }
         // <video> doesn't fire 'error' for failed <source>s; the last one erroring means all were rejected.
         el.lastElementChild?.addEventListener('error', showFallback);
+        el.addEventListener('loadedmetadata', layout, { once: true });
         el.load();
     }
 
@@ -263,16 +300,7 @@
             canvas.height = Math.round(H * dpr);
         }
 
-        // object-fit: cover + object-position: focus → where a video-frame point lands in the element
-        function frame() {
-            const el = state.active;
-            const vw = el.videoWidth || 16;
-            const vh = el.videoHeight || 9;
-            const s = Math.max(W / vw, H / vh);
-            const rw = vw * s;
-            const rh = vh * s;
-            return { ox: (W - rw) * CONFIG.focus.x, oy: (H - rh) * CONFIG.focus.y, rw, rh };
-        }
+        const frame = () => frameRect;
 
         function spawnSteam(p, f, initial) {
             const u = f.rh;

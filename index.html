@@ -134,34 +134,37 @@
 
         #hero-media {
             --hero-blend: screen;
-            --mask-inner: 42%;
-            --mask-outer: 74%;
-            --focus-x: 50%;
-            --focus-y: 55%;
+            --mask-x: 50%;
+            --mask-y: 50%;
+            --mask-rx: 28%;
+            --mask-ry: 44%;
+            --mask-inner: 72%;
+            --glow-x: 68%;
+            --glow-y: 34%;
             --glow-color: rgba(255, 163, 72, 0.22);
-            --glow-size: 55%;
+            --glow-size: 40%;
             --glow-blur: 40px;
         }
 
-        @media (min-width: 768px) {
-            #hero-media {
-                width: var(--hero-desktop-width, 60%);
-            }
-        }
-
-        #hero-media .hero-layer {
-            mix-blend-mode: var(--hero-blend);
-            -webkit-mask-image: radial-gradient(ellipse at var(--focus-x) var(--focus-y), #000 var(--mask-inner), transparent var(--mask-outer));
-            mask-image: radial-gradient(ellipse at var(--focus-x) var(--focus-y), #000 var(--mask-inner), transparent var(--mask-outer));
-        }
-
+        /* The video element is sized/placed by js/heroVideo.js to the clip's own aspect ratio,
+           so the mask coordinates below are in video-frame space. */
         #hero-media video {
-            object-fit: cover;
-            object-position: var(--focus-x) var(--focus-y);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            object-fit: contain;
+            mix-blend-mode: var(--hero-blend);
+            -webkit-mask-image: radial-gradient(var(--mask-rx) var(--mask-ry) at var(--mask-x) var(--mask-y), #000 var(--mask-inner), transparent 100%);
+            mask-image: radial-gradient(var(--mask-rx) var(--mask-ry) at var(--mask-x) var(--mask-y), #000 var(--mask-inner), transparent 100%);
+        }
+
+        #hero-particles {
+            mix-blend-mode: var(--hero-blend);
         }
 
         #hero-glow {
-            background: radial-gradient(circle at var(--focus-x) var(--focus-y), var(--glow-color) 0%, transparent var(--glow-size));
+            background: radial-gradient(circle at var(--glow-x) var(--glow-y), var(--glow-color) 0%, transparent var(--glow-size));
             filter: blur(var(--glow-blur));
         }
 
@@ -204,11 +207,11 @@
 <!-- Hero card -->
 <div class="md:col-span-8 h-[580px] md:h-[600px] relative isolate rounded-lg overflow-hidden border border-white/10 bg-gradient-to-br from-[#0f0f0f] to-[#080808] flex flex-col md:block">
 <!-- Hero video (js/heroVideo.js) -->
-<div id="hero-media" class="relative flex-1 min-h-[300px] md:absolute md:inset-y-0 md:right-0">
+<div id="hero-media" class="relative flex-1 min-h-[300px] md:absolute md:inset-0">
 <div id="hero-glow" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-<video id="hero-video" class="hero-layer absolute inset-0 w-full h-full" muted playsinline disablepictureinpicture poster="public/videos/burger-poster.jpg" aria-label="Burger ingredients dropping and stacking onto a plate as steam and golden sparks rise"></video>
-<canvas id="hero-particles" class="hero-layer absolute inset-0 w-full h-full pointer-events-none" style="opacity:0;transition:opacity .8s ease" aria-hidden="true"></canvas>
-<img id="hero-video-fallback" class="hidden absolute inset-0 w-full h-full object-cover" alt="Royal Burger with flame-grilled beef and melted cheddar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBckGXx1FOXmH_W7oo1DlWuRtgQs1nPA8XyngmLT7EaiNxra9P62J7UNIuehcTmLhXWzor1jfCXamgOSHx7ntteOUZIlsSpaH9r-sgUcPwO2LTb_SSiVo4qNMc_9O8O_2NRse3rIM2rp74sgjkrcOoS7npsTw58t8uIxdAtH9ANNZlWKlM1pk4N25XpCUif5daUDYO4N2PThzgri_66-gkr8dqP0Slfd6kC9EOFkTWm3ibLcbVsIVkxtgo7LiabBS8jtB641BKdG2jn"/>
+<video id="hero-video" muted playsinline disablepictureinpicture poster="public/videos/burger-poster.jpg" aria-label="Burger ingredients dropping and stacking onto a plate as steam and golden sparks rise"></video>
+<canvas id="hero-particles" class="absolute inset-0 w-full h-full pointer-events-none" style="opacity:0;transition:opacity .8s ease" aria-hidden="true"></canvas>
+<img id="hero-video-fallback" class="hidden absolute inset-y-0 right-0 w-full md:w-[60%] h-full object-cover" alt="Royal Burger with flame-grilled beef and melted cheddar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBckGXx1FOXmH_W7oo1DlWuRtgQs1nPA8XyngmLT7EaiNxra9P62J7UNIuehcTmLhXWzor1jfCXamgOSHx7ntteOUZIlsSpaH9r-sgUcPwO2LTb_SSiVo4qNMc_9O8O_2NRse3rIM2rp74sgjkrcOoS7npsTw58t8uIxdAtH9ANNZlWKlM1pk4N25XpCUif5daUDYO4N2PThzgri_66-gkr8dqP0Slfd6kC9EOFkTWm3ibLcbVsIVkxtgo7LiabBS8jtB641BKdG2jn"/>
 </div>
 <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_65%_45%,transparent_45%,rgba(0,0,0,0.4)_100%)]"></div>
 <div class="relative z-10 flex flex-col justify-end p-8 md:p-10 lg:p-12 md:h-full md:w-[56%] pointer-events-none bg-gradient-to-t from-[#080808]/90 to-transparent md:bg-gradient-to-r md:from-[#080808]/80 md:via-[#080808]/35 md:to-transparent">
