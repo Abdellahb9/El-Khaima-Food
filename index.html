@@ -8,6 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"/>
+<script type="module" src="js/heroBurger.js"></script>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -168,125 +178,24 @@
 <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop reveal">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap">
 <!-- Main 3D Canvas -->
-<div class="md:col-span-8 h-[500px] md:h-[600px] relative rounded-lg overflow-hidden glass-card group">
-<!-- STITCH_THREEJS_START:ANIMATION_2 class="absolute inset-0 w-full h-full" -->
-<div class="absolute inset-0 w-full h-full" style="display:block;">
-<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
-<div id="threejs-container-ANIMATION_2" style="width:100%;height:100%"></div>
-<script>
-(function() {
-  const container = document.getElementById('threejs-container-ANIMATION_2');
-  const devicePixelRatio = window.devicePixelRatio || 1;
-  const width = container.clientWidth || window.innerWidth;
-const height = container.clientHeight || window.innerHeight;
-
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-camera.position.z = 5;
-
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setSize(width, height);
-renderer.setPixelRatio(window.devicePixelRatio);
-container.appendChild(renderer.domElement);
-
-// Lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-scene.add(ambientLight);
-
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight.position.set(5, 5, 5);
-scene.add(directionalLight);
-
-const accentLight = new THREE.PointLight(0xccff00, 2, 10);
-accentLight.position.set(-2, 2, 2);
-scene.add(accentLight);
-
-// Burger Model Construction
-const burgerGroup = new THREE.Group();
-
-// Materials
-const bunMaterial = new THREE.MeshStandardMaterial({ color: 0xD08B47, roughness: 0.8 });
-const meatMaterial = new THREE.MeshStandardMaterial({ color: 0x5C3B24, roughness: 0.9 });
-const cheeseMaterial = new THREE.MeshStandardMaterial({ color: 0xFFD700 });
-const lettuceMaterial = new THREE.MeshStandardMaterial({ color: 0x32CD32 });
-
-// Bottom Bun
-const bottomBunGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.4, 32);
-const bottomBun = new THREE.Mesh(bottomBunGeo, bunMaterial);
-bottomBun.position.y = -0.8;
-burgerGroup.add(bottomBun);
-
-// Meat Patty
-const meatGeo = new THREE.CylinderGeometry(1.15, 1.15, 0.3, 32);
-const meat = new THREE.Mesh(meatGeo, meatMaterial);
-meat.position.y = -0.45;
-burgerGroup.add(meat);
-
-// Cheese
-const cheeseGeo = new THREE.BoxGeometry(2.1, 0.05, 2.1);
-const cheese = new THREE.Mesh(cheeseGeo, cheeseMaterial);
-cheese.position.y = -0.28;
-cheese.rotation.y = Math.PI / 4;
-burgerGroup.add(cheese);
-
-// Lettuce
-const lettuceGeo = new THREE.CylinderGeometry(1.25, 1.25, 0.1, 32);
-const lettuce = new THREE.Mesh(lettuceGeo, lettuceMaterial);
-lettuce.position.y = -0.2;
-burgerGroup.add(lettuce);
-
-// Top Bun
-const topBunGeo = new THREE.SphereGeometry(1.2, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
-const topBun = new THREE.Mesh(topBunGeo, bunMaterial);
-topBun.position.y = -0.1;
-topBun.scale.y = 0.7;
-burgerGroup.add(topBun);
-
-scene.add(burgerGroup);
-
-// Mouse interaction
-let mouseX = 0;
-let mouseY = 0;
-let targetRotationX = 0;
-let targetRotationY = 0;
-
-window.addEventListener('mousemove', (event) => {
-    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-});
-
-function animate() {
-    requestAnimationFrame(animate);
-
-    // Auto rotation
-    burgerGroup.rotation.y += 0.005;
-
-    // Smooth mouse parallax
-    targetRotationY = mouseX * 0.5;
-    targetRotationX = mouseY * 0.3;
-
-    burgerGroup.rotation.y += (targetRotationY - burgerGroup.rotation.y) * 0.05;
-    burgerGroup.rotation.x += (targetRotationX - burgerGroup.rotation.x) * 0.05;
-
-    renderer.render(scene, camera);
-}
-
-window.addEventListener('resize', () => {
-    const w = container.clientWidth || window.innerWidth;
-    const h = container.clientHeight || window.innerHeight;
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
-});
-
-animate();
-})();
-</script>
+<div class="md:col-span-8 h-[580px] md:h-[600px] relative rounded-lg overflow-hidden glass-card flex flex-col md:block">
+<div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_68%_55%,rgba(204,255,0,0.07),transparent_60%)]"></div>
+<!-- 3D burger (js/heroBurger.js) -->
+<div id="hero-burger" class="relative flex-1 min-h-[300px] md:absolute md:inset-y-0 md:right-0 md:w-[62%]">
+<canvas id="hero-burger-canvas" class="absolute inset-0 w-full h-full block" role="img" aria-label="Rotating 3D Royal Burger"></canvas>
+<div id="hero-burger-loader" class="absolute inset-0 flex flex-col items-center justify-center gap-4 pointer-events-none transition-opacity duration-500">
+<svg class="w-14 h-14 -rotate-90" viewBox="0 0 56 56" aria-hidden="true">
+<circle cx="28" cy="28" r="24" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"></circle>
+<circle id="hero-burger-progress" cx="28" cy="28" r="24" fill="none" stroke="#CCFF00" stroke-width="3" stroke-linecap="round" style="stroke-dasharray:150.8;stroke-dashoffset:150.8;transition:stroke-dashoffset .3s ease"></circle>
+</svg>
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant animate-pulse">Heating the grill…</span>
 </div>
-<!-- STITCH_THREEJS_END:ANIMATION_2 -->
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-12 pointer-events-none">
-<h1 class="font-display-xl text-display-xl text-primary mb-4">El Khaima Food</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">Authentic Taste, Fast Service. Experience the Electric Oasis of Laâyoune's finest fast food fusion.</p>
+<img id="hero-burger-fallback" class="hidden absolute inset-0 w-full h-full object-cover" alt="Royal Burger with flame-grilled beef and melted cheddar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBckGXx1FOXmH_W7oo1DlWuRtgQs1nPA8XyngmLT7EaiNxra9P62J7UNIuehcTmLhXWzor1jfCXamgOSHx7ntteOUZIlsSpaH9r-sgUcPwO2LTb_SSiVo4qNMc_9O8O_2NRse3rIM2rp74sgjkrcOoS7npsTw58t8uIxdAtH9ANNZlWKlM1pk4N25XpCUif5daUDYO4N2PThzgri_66-gkr8dqP0Slfd6kC9EOFkTWm3ibLcbVsIVkxtgo7LiabBS8jtB641BKdG2jn"/>
+</div>
+<div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_65%_45%,transparent_45%,rgba(0,0,0,0.4)_100%)]"></div>
+<div class="relative z-10 flex flex-col justify-end p-8 md:p-10 lg:p-12 md:h-full md:w-[56%] pointer-events-none bg-gradient-to-t from-black/70 to-transparent md:bg-none">
+<h1 class="font-display-xl text-5xl md:text-[52px] lg:text-[60px] xl:text-display-xl leading-[1.05] tracking-tight font-bold text-primary mb-4">El Khaima Food</h1>
+<p class="font-body-md md:font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-md">Authentic Taste, Fast Service. Experience the Electric Oasis of Laâyoune's finest fast food fusion.</p>
 </div>
 </div>
 <!-- Right Side Stack -->
