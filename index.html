@@ -132,6 +132,39 @@
             transform: translateY(0);
         }
 
+        #hero-media {
+            --hero-blend: screen;
+            --mask-inner: 42%;
+            --mask-outer: 74%;
+            --focus-x: 50%;
+            --focus-y: 55%;
+            --glow-color: rgba(255, 163, 72, 0.22);
+            --glow-size: 55%;
+            --glow-blur: 40px;
+        }
+
+        @media (min-width: 768px) {
+            #hero-media {
+                width: var(--hero-desktop-width, 60%);
+            }
+        }
+
+        #hero-media .hero-layer {
+            mix-blend-mode: var(--hero-blend);
+            -webkit-mask-image: radial-gradient(ellipse at var(--focus-x) var(--focus-y), #000 var(--mask-inner), transparent var(--mask-outer));
+            mask-image: radial-gradient(ellipse at var(--focus-x) var(--focus-y), #000 var(--mask-inner), transparent var(--mask-outer));
+        }
+
+        #hero-media video {
+            object-fit: cover;
+            object-position: var(--focus-x) var(--focus-y);
+        }
+
+        #hero-glow {
+            background: radial-gradient(circle at var(--focus-x) var(--focus-y), var(--glow-color) 0%, transparent var(--glow-size));
+            filter: blur(var(--glow-blur));
+        }
+
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -169,18 +202,16 @@
 <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop reveal">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap">
 <!-- Hero card -->
-<div class="md:col-span-8 h-[580px] md:h-[600px] relative rounded-lg overflow-hidden glass-card flex flex-col md:block">
-<div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_68%_55%,rgba(204,255,0,0.07),transparent_60%)]"></div>
+<div class="md:col-span-8 h-[580px] md:h-[600px] relative isolate rounded-lg overflow-hidden border border-white/10 bg-gradient-to-br from-[#0f0f0f] to-[#080808] flex flex-col md:block">
 <!-- Hero video (js/heroVideo.js) -->
-<div id="hero-media" class="relative flex-1 min-h-[300px] md:absolute md:inset-y-0 md:right-0 md:w-[62%]">
-<video id="hero-video" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 [mask-image:radial-gradient(ellipse_at_center,#000_50%,transparent_78%)]" muted playsinline loop preload="auto" disablepictureinpicture poster="public/videos/hero-burger-poster.jpg" aria-label="Burger ingredients falling in slow motion and stacking onto a plate">
-<source src="public/videos/hero-burger.webm" type="video/webm"/>
-<source src="public/videos/hero-burger.mp4" type="video/mp4"/>
-</video>
-<img id="hero-video-fallback" class="hidden absolute inset-0 w-full h-full object-cover"alt="Royal Burger with flame-grilled beef and melted cheddar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBckGXx1FOXmH_W7oo1DlWuRtgQs1nPA8XyngmLT7EaiNxra9P62J7UNIuehcTmLhXWzor1jfCXamgOSHx7ntteOUZIlsSpaH9r-sgUcPwO2LTb_SSiVo4qNMc_9O8O_2NRse3rIM2rp74sgjkrcOoS7npsTw58t8uIxdAtH9ANNZlWKlM1pk4N25XpCUif5daUDYO4N2PThzgri_66-gkr8dqP0Slfd6kC9EOFkTWm3ibLcbVsIVkxtgo7LiabBS8jtB641BKdG2jn"/>
+<div id="hero-media" class="relative flex-1 min-h-[300px] md:absolute md:inset-y-0 md:right-0">
+<div id="hero-glow" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+<video id="hero-video" class="hero-layer absolute inset-0 w-full h-full" muted playsinline disablepictureinpicture poster="public/videos/burger-poster.jpg" aria-label="Burger ingredients dropping and stacking onto a plate as steam and golden sparks rise"></video>
+<canvas id="hero-particles" class="hero-layer absolute inset-0 w-full h-full pointer-events-none" style="opacity:0;transition:opacity .8s ease" aria-hidden="true"></canvas>
+<img id="hero-video-fallback" class="hidden absolute inset-0 w-full h-full object-cover" alt="Royal Burger with flame-grilled beef and melted cheddar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBckGXx1FOXmH_W7oo1DlWuRtgQs1nPA8XyngmLT7EaiNxra9P62J7UNIuehcTmLhXWzor1jfCXamgOSHx7ntteOUZIlsSpaH9r-sgUcPwO2LTb_SSiVo4qNMc_9O8O_2NRse3rIM2rp74sgjkrcOoS7npsTw58t8uIxdAtH9ANNZlWKlM1pk4N25XpCUif5daUDYO4N2PThzgri_66-gkr8dqP0Slfd6kC9EOFkTWm3ibLcbVsIVkxtgo7LiabBS8jtB641BKdG2jn"/>
 </div>
 <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_65%_45%,transparent_45%,rgba(0,0,0,0.4)_100%)]"></div>
-<div class="relative z-10 flex flex-col justify-end p-8 md:p-10 lg:p-12 md:h-full md:w-[56%] pointer-events-none bg-gradient-to-t from-black/70 to-transparent md:bg-none">
+<div class="relative z-10 flex flex-col justify-end p-8 md:p-10 lg:p-12 md:h-full md:w-[56%] pointer-events-none bg-gradient-to-t from-[#080808]/90 to-transparent md:bg-gradient-to-r md:from-[#080808]/80 md:via-[#080808]/35 md:to-transparent">
 <h1 class="font-display-xl text-5xl md:text-[52px] lg:text-[60px] xl:text-display-xl leading-[1.05] tracking-tight font-bold text-primary mb-4">El Khaima Food</h1>
 <p class="font-body-md md:font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-md">Authentic Taste, Fast Service. Experience the Electric Oasis of Laâyoune's finest fast food fusion.</p>
 </div>
