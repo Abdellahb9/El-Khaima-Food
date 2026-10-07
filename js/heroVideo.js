@@ -403,11 +403,25 @@
             return;
         }
         if (state.finished) {
-            if (CONFIG.loopMode === 'hold') particles.start();
+            if (CONFIG.loopMode !== 'crossfade') particles.start();
             return;
         }
-        state.active.play().catch(() => {});
+        state.active.play().catch((err) => { if (err.name === 'NotAllowedError') showFinalFrame(); });
         if (state.crossfading) state.standby.play().catch(() => {});
+    }
+
+    // Autoplay refused (e.g. iOS Low Power Mode): the poster was already dropped and the video is
+    // transparent, so jump to the stacked burger and show it rather than leaving the hero empty.
+    function showFinalFrame() {
+        const el = state.active;
+        const show = () => {
+            el.currentTime = CONFIG.holdAt ?? Math.max(el.duration - 0.05, 0);
+            el.style.opacity = '1';
+            state.finished = true;
+            sync();
+        };
+        if (el.readyState >= 1) show();
+        else el.addEventListener('loadedmetadata', show, { once: true });
     }
 
     if (reducedMq.matches || isSlowConnection()) {

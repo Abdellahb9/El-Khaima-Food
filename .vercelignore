@@ -1,0 +1,5 @@
+.claude
+.env*
+scripts
+public/videos/burger.mp4
+public/videos/burger-mobile.mp4
