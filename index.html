@@ -8,16 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
-  }
-}
-</script>
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"/>
-<script type="module" src="js/heroBurger.js"></script>
+<script defer src="js/heroVideo.js"></script>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -177,20 +168,16 @@
 <!-- Bento Grid Hero Section -->
 <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop reveal">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap">
-<!-- Main 3D Canvas -->
+<!-- Hero card -->
 <div class="md:col-span-8 h-[580px] md:h-[600px] relative rounded-lg overflow-hidden glass-card flex flex-col md:block">
 <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_68%_55%,rgba(204,255,0,0.07),transparent_60%)]"></div>
-<!-- 3D burger (js/heroBurger.js) -->
-<div id="hero-burger" class="relative flex-1 min-h-[300px] md:absolute md:inset-y-0 md:right-0 md:w-[62%]">
-<canvas id="hero-burger-canvas" class="absolute inset-0 w-full h-full block" role="img" aria-label="Rotating 3D Royal Burger"></canvas>
-<div id="hero-burger-loader" class="absolute inset-0 flex flex-col items-center justify-center gap-4 pointer-events-none transition-opacity duration-500">
-<svg class="w-14 h-14 -rotate-90" viewBox="0 0 56 56" aria-hidden="true">
-<circle cx="28" cy="28" r="24" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"></circle>
-<circle id="hero-burger-progress" cx="28" cy="28" r="24" fill="none" stroke="#CCFF00" stroke-width="3" stroke-linecap="round" style="stroke-dasharray:150.8;stroke-dashoffset:150.8;transition:stroke-dashoffset .3s ease"></circle>
-</svg>
-<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant animate-pulse">Heating the grill…</span>
-</div>
-<img id="hero-burger-fallback" class="hidden absolute inset-0 w-full h-full object-cover" alt="Royal Burger with flame-grilled beef and melted cheddar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBckGXx1FOXmH_W7oo1DlWuRtgQs1nPA8XyngmLT7EaiNxra9P62J7UNIuehcTmLhXWzor1jfCXamgOSHx7ntteOUZIlsSpaH9r-sgUcPwO2LTb_SSiVo4qNMc_9O8O_2NRse3rIM2rp74sgjkrcOoS7npsTw58t8uIxdAtH9ANNZlWKlM1pk4N25XpCUif5daUDYO4N2PThzgri_66-gkr8dqP0Slfd6kC9EOFkTWm3ibLcbVsIVkxtgo7LiabBS8jtB641BKdG2jn"/>
+<!-- Hero video (js/heroVideo.js) -->
+<div id="hero-media" class="relative flex-1 min-h-[300px] md:absolute md:inset-y-0 md:right-0 md:w-[62%]">
+<video id="hero-video" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 [mask-image:radial-gradient(ellipse_at_center,#000_50%,transparent_78%)]" muted playsinline loop preload="auto" disablepictureinpicture poster="public/videos/hero-burger-poster.jpg" aria-label="Burger ingredients falling in slow motion and stacking onto a plate">
+<source src="public/videos/hero-burger.webm" type="video/webm"/>
+<source src="public/videos/hero-burger.mp4" type="video/mp4"/>
+</video>
+<img id="hero-video-fallback" class="hidden absolute inset-0 w-full h-full object-cover"alt="Royal Burger with flame-grilled beef and melted cheddar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBckGXx1FOXmH_W7oo1DlWuRtgQs1nPA8XyngmLT7EaiNxra9P62J7UNIuehcTmLhXWzor1jfCXamgOSHx7ntteOUZIlsSpaH9r-sgUcPwO2LTb_SSiVo4qNMc_9O8O_2NRse3rIM2rp74sgjkrcOoS7npsTw58t8uIxdAtH9ANNZlWKlM1pk4N25XpCUif5daUDYO4N2PThzgri_66-gkr8dqP0Slfd6kC9EOFkTWm3ibLcbVsIVkxtgo7LiabBS8jtB641BKdG2jn"/>
 </div>
 <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_65%_45%,transparent_45%,rgba(0,0,0,0.4)_100%)]"></div>
 <div class="relative z-10 flex flex-col justify-end p-8 md:p-10 lg:p-12 md:h-full md:w-[56%] pointer-events-none bg-gradient-to-t from-black/70 to-transparent md:bg-none">
